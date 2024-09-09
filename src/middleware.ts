@@ -7,8 +7,7 @@ import type { NextRequest } from 'next/server';
 
 
 export async function middleware(req: NextRequest) {
-  const secret = process.env.NEXTAUTH_SECRET || 'default_secret';
-  const token = await getToken({ req, secret: secret, salt: ""});
+  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET});
   const { pathname } = req.nextUrl;
 
   // 認証が必要なルート指定
