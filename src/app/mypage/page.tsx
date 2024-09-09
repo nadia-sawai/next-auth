@@ -1,19 +1,24 @@
 'use client';
 import { useSession } from "next-auth/react"
-import { useRouter } from 'next/navigation';
-import { useEffect } from "react";
+import Styles from './mypage.module.scss'
+import Image from "next/image";
 
 export default function Page() {
-  const { data: session, status } = useSession()
-  const router = useRouter();
-
-  useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/');
-    }
-
-  },[status, router])
+  const { data: session } = useSession()
+  const provider = session?.provider === "google" ? "Google" : "Github"
 
 
-  return (<p>Signed in as {session?.user?.email}</p>)
+  return (
+    <div className={Styles.maypage}>
+      <dl className={Styles.list}>
+        <dt>ログインプロバイダ</dt>
+        <dd>{provider}</dd>
+        <dt>ユーザー名</dt>
+        <dd>{session?.user?.name}</dd>
+        <dt>メールアドレス</dt>
+        <dd>{session?.user?.email}</dd>
+      </dl>
+      {session?.user?.image && <div className={Styles.image}><Image src={session.user?.image} width={100} height={100} alt="" /></div>}
+    </div>
+  )
 }

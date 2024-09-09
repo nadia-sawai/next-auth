@@ -1,0 +1,16 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  ;
+  dt {
+    width: 30%;
+    margin-bottom: 10px;
+  }
+  dd {
+    width: 70%;
+    margin-bottom: 10px;
+  }
+}
+.image {
+  margin-top: 20px;
+}
