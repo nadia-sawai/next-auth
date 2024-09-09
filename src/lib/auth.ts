@@ -20,6 +20,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       clientSecret: process.env.AUTH_GITHUB_SECRET
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     // cf. https://next-auth.js.org/configuration/callbacks#jwt-callback
     async session({ session, user, token }) {
