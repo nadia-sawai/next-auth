@@ -18,7 +18,7 @@ export default async function Page() {
         <SignInGithub />
       </div>
       <div className="pt-10">
-        <Link href="/sample">サンプルページ（認証していないとトップにリダイレクト）</Link>
+        <Link href={"/sample"}>サンプルページ（認証していないとトップにリダイレクト）</Link>
       </div>
     </>
   )

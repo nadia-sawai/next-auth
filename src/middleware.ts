@@ -2,23 +2,15 @@
 // export { auth as middleware } from "@/lib/auth"
 
 import { NextResponse } from 'next/server';
-import { getToken } from 'next-auth/jwt';
 import type { NextRequest } from 'next/server';
+import { auth } from './lib/auth';
 
 
 export async function middleware(req: NextRequest) {
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET});
-  const { pathname } = req.nextUrl;
-
-  // 認証が必要なルート指定
-  const protectedRoutes = ['/mypage', '/sample'];
-
-  // protectedRoutesのページにアクセスし、かつトークンがない場合はトップへリダイレクト
-  if (protectedRoutes.some(route => pathname.startsWith(route)) && !token) {
+  const session = await auth();
+  if (!session) {
     return NextResponse.redirect(new URL('/', req.url));
   }
-
-  // 他ページへのアクセスはそのまま
   return NextResponse.next();
 }
 
