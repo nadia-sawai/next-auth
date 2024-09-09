@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  box-shadow: 2px 0px 2px rgba(0,0,0,0.3);
+}
+.buttons {
+  margin-left: auto;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
