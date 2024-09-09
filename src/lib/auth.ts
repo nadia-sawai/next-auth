@@ -36,22 +36,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return token;
     },
-    authorized({ request, auth }) {
-      // ログイン済みのユーザーしか見せたくないページなど
-      // パス取得
-      const { pathname } = request.nextUrl;
+    // authorized({ request, auth }) {
+    //   // ログイン済みのユーザーしか見せたくないページなど
+    //   // パス取得
+    //   const { pathname } = request.nextUrl;
       
-      // ログインしていない場合はリダイレクト
-      if (pathname === "/mypage") {
-        if (!auth) {
-          return NextResponse.redirect(new URL('/', request.url));
-        }
-        return true;
+    //   // ログインしていない場合はリダイレクト
+    //   if (pathname === "/mypage") {
+    //     if (!auth) {
+    //       return NextResponse.redirect(new URL('/', request.url));
+    //     }
+    //     return true;
 
-        // authのオブジェクトが空:false, 空ではない：trueを返す
-        // return !!auth;
-      }
-      return true;
-    },
+    //     // authのオブジェクトが空:false, 空ではない：trueを返す
+    //     // return !!auth;
+    //   }
+    //   return true;
+    // },
   }
 })
